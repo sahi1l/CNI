@@ -1,30 +1,8 @@
 #!/usr/bin/env python3
 """The following code implements the Cooke-Nieboer index, as shown in the paper by Scott Hill found at networks.scotthill.us.
-The functions update and finalize are from Wikipedia; I don't know who originally wrote them.  They implement Welford's online algorithm: "Note on a method for calculating corrected sums of squares and products". Technometrics. 4 (3): 419–420."""
+The class Stats implements Welford's online algorithm: 
+"Note on a method for calculating corrected sums of squares and products". Technometrics. 4 (3): 419–420."""
 import math
-def update(existingAggregate, newValue):
-    """Given newValue, compute the new count, mean, and M2.
-    mean accumulates the mean of the entire dataset
-    M2 aggregates the squared distance from the mean.
-    count aggregates the number of samples seen so far"""
-    (count, mean, M2) = existingAggregate
-    count = count + 1 
-    delta = newValue - mean
-    mean = mean + delta / count
-    delta2 = newValue - mean
-    M2 = M2 + delta * delta2
-
-    return (count, mean, M2)
-
-def finalize(existingAggregate):
-    """Retrieve the mean, variance and sample variance from an aggregate"""
-    (count, mean, M2) = existingAggregate
-    (mean, variance, sampleVariance) = (mean, M2/count, M2/(count - 1)) 
-    if count < 2:
-        return float('nan')
-    else:
-        return (mean, variance, sampleVariance)
-
 #========================================
 class Stats:
     """Implements a class to keep track of running means and standard errors, etc."""
@@ -57,8 +35,9 @@ from random import choices
 
 def cni(alldegs,maxerr=0.01):
     """Given a list of the degrees in a network, calculate the Cooke-Nieboer index using random sampling.
-    Stop when the standard error is below maxerr."""
-    vals=[]
+    Stop when the standard error is below maxerr.
+    Multiple runs of this function on the same sequence should return values with a standard deviation of maxerr.
+    """
     stats=Stats()
     stats.init()
     while True:
