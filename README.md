@@ -1,2 +1,1 @@
-This code implements the Cooke-Nieboer index, presented by Sam A. Hill at NetSci 2019.
-
+This code implements the Cooke-Nieboer index, presented by Sam A. Hill in ["Measure for characterizing heavy-tailed networks"](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.3.023257) published in Physical Review Research in 2021.
