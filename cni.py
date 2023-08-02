@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """The following code implements the Cooke-Nieboer index, as shown in the paper by Sam A. Hill found in 
-"Measure for characterizing heavy-tailed networks" in Phys. Rev. Research 3, 023257.
+"Measure for characterizing heavy-tailed networks" in Phys. Rev. Research 3, 023257 (2021).
 The class Stats implements Welford's online algorithm: 
 "Note on a method for calculating corrected sums of squares and products". Technometrics. 4 (3): 419–420."""
 import math
